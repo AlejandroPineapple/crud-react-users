@@ -4,7 +4,7 @@ import Loader from '../Common/Loader';
 import './User.css';
 const CreateUser = () => {
     const navigate = useNavigate();
-    const createUserApi = "http://localhost:3001/usuarios/"
+    const createUserApi = process.env.API_URL;
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState({
@@ -57,15 +57,15 @@ const CreateUser = () => {
             </div>
             <form onSubmit={handelSubmit}>
                 <div className="mb-3">
-                    <label for="nombre" className="form-label">Nombre</label>
-                    <input type="text" className="form-control" id="nombre" name="nombre" value={user.name} onChange={handelInput} />
+                    <label for="nombre" className="form-label">Name</label>
+                    <input type="text" className="form-control" id="nombre" name="nombre" value={user.nombre} onChange={handelInput} />
                 </div>
                 <div className="mb-3 mt-3">
                     <label for="email" className="form-label">Email</label>
                     <input type="email" className="form-control" id="email" name="email" value={user.email} onChange={handelInput} />
                 </div>
                 <div className="mb-3">
-                    <label for="password" className="form-label">Password</label>
+                    <label for="pwd" className="form-label">Phone</label>
                     <input type="text" className="form-control" id="password" name="password" value={user.password} onChange={handelInput} />
                 </div>
                 <button type="submit" className="btn btn-primary submit-btn">Submit</button>

@@ -5,7 +5,7 @@ import "./User.css";
 const EditUser = () => {
   const [user, setUser] = useState([]);
   const { id } = useParams();
-  const getUserApi = "http://localhost:3001/usuarios";
+  const getUserApi = process.env.API_URL;
 
   useEffect(() => {
     getUser();
@@ -15,7 +15,7 @@ const EditUser = () => {
     axios
       .get(getUserApi.concat("/") + id)
       .then((item) => {
-        setUser(item.data);
+        setUser(item.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -34,7 +34,7 @@ const EditUser = () => {
     </thead>
     <tbody>
       <tr>
-        <td>Name</td>
+        <td>Nombre</td>
         <td>{user.nombre}</td>
       </tr>
       <tr>

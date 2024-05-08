@@ -9,7 +9,7 @@ const EditUser = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
-  const getUserApi = "http://localhost:3001/usuarios";
+  const getUserApi = process.env.API_URL;
 
   useEffect(() => {
     getUser();
@@ -19,8 +19,7 @@ const EditUser = () => {
     axios
       .get(getUserApi.concat("/") + id)
       .then((item) => {
-        console.log(item.data.data)
-        setUser(item.data.data);
+        setUser(item.data);
       })
       .catch((err) => {
         console.log(err);

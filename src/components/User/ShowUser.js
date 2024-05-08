@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Loader from "../Common/Loader";
 
 const ShowUser = () => {
-  const showUserApi = "http://localhost:3001/usuarios";
+  const showUserApi = process.env.API_URL;
 
   const [user, setUser] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +20,7 @@ const ShowUser = () => {
       if (!response.ok) {
         throw new Error("Failed to delete item");
       }
-      setUser(user.filter((item) => item._id !== id));
+      setUser(user.filter((item) => item.id !== id));
     } catch (error) {
       setError(error.message);
     } finally {
@@ -36,7 +36,7 @@ const ShowUser = () => {
     axios
       .get(showUserApi)
       .then((res) => {
-        console.log("Data:",res.data)
+        console.log("Data", res.data)
         setUser(res.data.data);
       })
       .catch((err) => {
@@ -55,20 +55,20 @@ const ShowUser = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nombre</th>
+              <th>Name</th>
               <th>Email</th>
-              <th>Password</th>
+              <th>Phone</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            { user.map((item, i) => {
+            {user?.map((item, i) => {
               return (
                 <tr key={i + 1}>
                   <td>{i + 1}</td>
-                  <td>{item.nombre}</td>
+                  <td>{item.name}</td>
                   <td>{item.email}</td>
-                  <td>{item.password}</td>
+                  <td>{item.phone}</td>
                   <td>
                     <Link to={`/edit-user/${item._id}`}>
                       <i className="fa fa-pencil" aria-hidden="true"></i>
