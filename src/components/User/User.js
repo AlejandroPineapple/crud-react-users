@@ -5,7 +5,7 @@ import "./User.css";
 const EditUser = () => {
   const [user, setUser] = useState([]);
   const { id } = useParams();
-  const getUserApi = process.env.API_URL;
+  const getUserApi = "https://pina-usuarios-api.azurewebsites.net/usuarios/";
 
   useEffect(() => {
     getUser();

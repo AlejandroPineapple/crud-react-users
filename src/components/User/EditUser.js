@@ -10,7 +10,7 @@ const EditUser = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
-  const getUserApi = process.env.API_URL;
+  const getUserApi ="https://pina-usuarios-api.azurewebsites.net/usuarios/";
 
   useEffect(() => {
     getUser();
@@ -18,7 +18,7 @@ const EditUser = () => {
 
   const getUser = () => {
     axios
-      .get(getUserApi.concat("/") + id)
+      .get(getUserApi + id)
       .then((item) => {
         setUser(item.data);
       })
@@ -69,15 +69,15 @@ const EditUser = () => {
       </div>
       <form onSubmit={handelSubmit}>
         <div className="mb-3">
-          <label for="name" className="form-label">
-            Name
+          <label for="nombre" className="form-label">
+            Nombre
           </label>
           <input
             type="text"
             className="form-control"
-            id="name"
-            name="name"
-            value={user.name}
+            id="nombre"
+            nombre="nombre"
+            value={user.nombre}
             onChange={handelInput}
           />
         </div>
@@ -96,14 +96,14 @@ const EditUser = () => {
         </div>
         <div className="mb-3">
           <label for="pwd" className="form-label">
-            Phone
+            Password
           </label>
           <input
             type="text"
             className="form-control"
-            id="phone"
-            name="phone"
-            value={user.phone}
+            id="password"
+            name="password"
+            value={user.password}
             onChange={handelInput}
           />
         </div>
